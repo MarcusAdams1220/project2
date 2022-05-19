@@ -27,8 +27,6 @@ get '/movie_details' do
     imdb_rating = details['Ratings'][0]['Value']
     imdbID = details['imdbID']
 
-    binding.pry
-
     erb :'movies/movie_details', locals: {
         movie_title: movie_title,
         poster_url: poster_url,

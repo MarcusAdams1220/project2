@@ -1,3 +1,11 @@
-def create_review(movie_id, user_id, review)
-    run_sql("INSERT INTO reviews(movie_id, user_id, review) VALUES($1, $2, $3)", [movie_id, user_id, review])
+def create_review(movie_id, user_id, review, name)
+    run_sql("INSERT INTO reviews(movie_id, user_id, review, name) VALUES($1, $2, $3, $4)", [movie_id, user_id, review,name])
+end
+
+def get_review(id)
+    run_sql("SELECT * FROM reviews WHERE id = $1", [id])[0]
+end
+
+def update_review(new_review, movie_id, user_id)
+    run_sql("UPDATE reviews SET review = $1 WHERE movie_id = $2 AND user_id = $3", [new_review, movie_id, user_id])
 end

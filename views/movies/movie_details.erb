@@ -2,8 +2,8 @@
 
 <img src="<%= poster_url %>" alt="">
 
-<p>Release Date: <%= release_date %></p>
-<p>IMDB Rating: <%= imdb_rating %></p>
+<p><strong>Release Date: </strong><%= release_date %></p>
+<p><strong>IMDB Rating: </strong><%= imdb_rating %></p>
 
 <form action="/create_review" method="POST">
     <input type="hidden" name="movie_id" value="<%= imdbID %>">
@@ -14,10 +14,13 @@
     <button>Submit Review</button>
 </form>
 
-
-<h2>Reviews: </h2>
+<h2>User Reviews: </h2>
 <% reviews.each do |review_hash| %>
-    <p><%= review_hash['review'] %></p>
+    
+    <p><strong><%= review_hash['name'] %>:</strong> <%= review_hash['review'] %></p>
+
+    <a href="/edit_review?id=<%= review_hash['id'] %>&review=<%= review_hash['review'] %>">Edit Review</a>
+
 <% end %>
 
 

@@ -15,3 +15,6 @@ CREATE TABLE reviews (
     user_id INTEGER,
     review TEXT
 );
+ 
+ALTER TABLE reviews
+ADD name TEXT;
