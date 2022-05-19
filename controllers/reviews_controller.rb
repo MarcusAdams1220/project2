@@ -28,5 +28,13 @@ put '/update_review/:id' do
     update_review(review_edit, review_hash['movie_id'], session['user_id'].to_i)
 
     redirect "/movie_details?movie_id=#{review_hash['movie_id']}"
+end
 
+delete '/delete_review/:id' do
+    review_id = params['id']
+    movie_id = params['movie_id']
+
+    delete_review(review_id)
+
+    redirect "/movie_details?movie_id=#{movie_id}"
 end

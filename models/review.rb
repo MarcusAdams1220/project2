@@ -9,3 +9,7 @@ end
 def update_review(new_review, movie_id, user_id)
     run_sql("UPDATE reviews SET review = $1 WHERE movie_id = $2 AND user_id = $3", [new_review, movie_id, user_id])
 end
+
+def delete_review (review_id)
+    run_sql("DELETE FROM reviews WHERE id = $1", [review_id])
+end
