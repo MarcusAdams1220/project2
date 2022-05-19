@@ -7,18 +7,12 @@ post '/create_user' do
     user_email = params['email']
     password = params['password']
 
-    # email = run_sql("SELECT email FROM users").to_a
+    user = find_user_by_email(user_email)
 
-    # all_emails.each do |email|
-    #     if email["email"] == user_email
-    #         create_user(name, user_email, password)
-    #         redirect '/'
-    #     end
-    # end
-
-    create_user(name, user_email, password)
-
-    redirect '/'
+    if user == nil
+        create_user(name, user_email, password)
+        redirect '/'
+    end
 end
 
 get '/login' do

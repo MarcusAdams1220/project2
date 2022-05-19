@@ -53,3 +53,5 @@
 <li>Create a logout button that's only disaplyed to logged in users.</li>
 <li>Write a method that sets the session id to nil (logs the user out) when the logout button is clicked & redirects them to the homepage.</li>
 </ul>
+
+### Part Three: Display movie information via API
