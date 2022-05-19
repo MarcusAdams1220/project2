@@ -14,7 +14,11 @@
     <button>Submit Review</button>
 </form>
 
-<%# Show all reviews here %>
+
+<h2>Reviews: </h2>
+<% reviews.each do |review_hash| %>
+    <p><%= review_hash['review'] %></p>
+<% end %>
 
 
 
