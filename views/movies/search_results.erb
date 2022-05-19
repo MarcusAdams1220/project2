@@ -1,5 +1,5 @@
 <h1>Search Results For "<%= user_input %>"</h1>
 
 <% movies.each do |movie| %>
-    <a href="/movie_details?movie_title=<%= movie['Title']%>"><img src="<%= movie['Poster'] %>" alt=""></a>
+    <a href="/movie_details?movie_id=<%= movie['imdbID']%>"><img src="<%= movie['Poster'] %>" alt=""></a>
 <% end %>

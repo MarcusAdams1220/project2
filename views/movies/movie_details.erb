@@ -5,14 +5,17 @@
 <p>Release Date: <%= release_date %></p>
 <p>IMDB Rating: <%= imdb_rating %></p>
 
-<form action="">
+<form action="/create_review" method="POST">
+    <input type="hidden" name="movie_id" value="<%= imdbID %>">
+
     <label for="">Leave A Review: </label> 
-    <input type="text" class="review-input">
+    <input type="text" name="review" class="review-input">
 
     <button>Submit Review</button>
 </form>
 
 <%# Show all reviews here %>
+
 
 
 

@@ -14,19 +14,25 @@ get '/search_results' do
 end
 
 get '/movie_details' do
-    title = params['movie_title']
+    # From search_results.erb
+    movie_id = params['movie_id']
 
-    details = HTTParty.get("https://omdbapi.com/?t=#{title}&apikey=6a610b16")
+    details = HTTParty.get("https://omdbapi.com/?i=#{movie_id}&apikey=6a610b16")
+
+    reviews = run_sql("SELECT * FROM reviews WHERE movie_id = $1", [movie_id])
 
     movie_title = details['Title']
     poster_url = details['Poster']
     release_date = details['Released']
     imdb_rating = details['Ratings'][0]['Value']
+    imdbID = details['imdbID']
 
     erb :'movies/movie_details', locals: {
         movie_title: movie_title,
         poster_url: poster_url,
         release_date: release_date,
         imdb_rating: imdb_rating,
+        imdbID: imdbID,
+        reviews: reviews
     }
 end
