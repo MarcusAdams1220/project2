@@ -18,24 +18,15 @@ get '/movie_details' do
 
     details = HTTParty.get("https://omdbapi.com/?t=#{title}&apikey=6a610b16")
 
-    #Movie Info
     movie_title = details['Title']
     poster_url = details['Poster']
-    realease_date = details['Released']
-    rating = details['Rated']
-
-    # Ratings
+    release_date = details['Released']
     imdb_rating = details['Ratings'][0]['Value']
-    rotten_tomatoes_rating = details['Ratings'][1]['Value']
-    metacritic_rating = details['Ratings'][2]['Value']
 
     erb :'movies/movie_details', locals: {
-        title: movie_title,
+        movie_title: movie_title,
         poster_url: poster_url,
-        release_date: realease_date,
-        rating: rating,
+        release_date: release_date,
         imdb_rating: imdb_rating,
-        rotten_tomatoes_rating: rotten_tomatoes_rating,
-        metacritic_rating: metacritic_rating
     }
 end
