@@ -4,7 +4,11 @@ post '/sessions' do
 
     user = find_user_by_email(email)
 
-    if (user && BCrypt::Password.new(user['password_digest']) == password)
+    if (email == "") || (password == "")
+        erb :'/sessions/new', locals: {
+            incorrect_login_msg: "Please enter your email & password to log in"
+        }
+    elsif (user && BCrypt::Password.new(user['password_digest']) == password)
         session['user_id'] = user['id'] # => "1"
         redirect '/'
     else
