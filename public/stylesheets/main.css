@@ -3,6 +3,6 @@
     height: 100px;
 }
 
-.input-error-msg {
-    color: red;
+.user-error-msg {
+    color: rgb(156, 0, 0);
 }

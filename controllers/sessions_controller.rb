@@ -4,12 +4,14 @@ post '/sessions' do
 
     user = find_user_by_email(email)
 
-    if user && BCrypt::Password.new(user['password_digest']) == password
+    if (user && BCrypt::Password.new(user['password_digest']) == password)
         session['user_id'] = user['id'] # => "1"
         redirect '/'
     else
         # Display login incorrect message
-        redirect '/login'
+        erb :'/sessions/new', locals: {
+            incorrect_login_msg: "The email or password you entered is incorrect"
+        }
     end
 end
 

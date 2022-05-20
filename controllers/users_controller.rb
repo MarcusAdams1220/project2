@@ -38,5 +38,7 @@ post '/create_user' do
 end
 
 get '/login' do
-    erb :'sessions/new'
+    erb :'sessions/new', locals: {
+        incorrect_login_msg: ""
+    }
 end
