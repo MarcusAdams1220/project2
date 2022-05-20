@@ -5,28 +5,35 @@
 <p><strong>Release Date: </strong><%= release_date %></p>
 <p><strong>IMDB Rating: </strong><%= imdb_rating %></p>
 
-<form action="/create_review" method="POST">
-    <input type="hidden" name="movie_id" value="<%= imdbID %>">
+<% if logged_in? %>
+    <form action="/create_review" method="POST">
+        <input type="hidden" name="movie_id" value="<%= imdbID %>">
 
-    <label for="">Leave A Review: </label> 
-    <input type="text" name="review" class="review-input">
+        <label for="">Leave A Review: </label> 
+        <input type="text" name="review" class="review-input">
 
-    <button>Submit Review</button>
-</form>
-
-<h2>User Reviews: </h2>
-<% reviews.each do |review_hash| %>
-    
-    <p><strong><%= review_hash['name'] %>:</strong> <%= review_hash['review'] %></p>
-
-    <a href="/edit_review?id=<%= review_hash['id'] %>&review=<%= review_hash['review'] %>">Edit Review</a>
-
-    <form action="/delete_review/<%= review_hash['id'] %>" method="POST">
-        <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="movie_id" value="<%= review_hash['movie_id'] %>">
-
-        <button>Delete Review</button>
+        <button>Submit Review</button>
     </form>
+<% end %>
+
+<% if reviews == [] %>
+    <h2>This Movie Has No Reviews</h2>
+<% else %>
+    <h2>User Reviews: </h2>
+
+    <% reviews.each do |review_hash| %>
+
+        <p><strong><%= review_hash['name'] %>:</strong> <%= review_hash['review'] %></p>
+
+        <a href="/edit_review?id=<%= review_hash['id'] %>&review=<%= review_hash['review'] %>">Edit Review</a>
+
+        <form action="/delete_review/<%= review_hash['id'] %>" method="POST">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="movie_id" value="<%= review_hash['movie_id'] %>">
+
+            <button>Delete Review</button>
+        </form>
+    <% end %>
 
 <% end %>
 

@@ -10,8 +10,15 @@ post '/create_user' do
     user = find_user_by_email(user_email)
 
     if user == nil
-        create_user(name, user_email, password)
-        redirect '/'
+        if (name == "") || (user_email == "") || (password == "")
+            "Please make sure you enter your name, email & password"
+        else
+            user = create_user(name, user_email, password).to_a[0]
+            session['user_id'] = user['id']
+            redirect '/'
+        end
+    else
+        # Display user already exists message
     end
 end
 

@@ -1,0 +1,11 @@
+<h1>My Reviews</h1>
+
+<% review_hash.each do |review| %>
+    <% movie_id = review['movie_id'] %>
+    <% movie_details = HTTParty.get("https://omdbapi.com/?i=#{movie_id}&apikey=6a610b16") %>
+
+    <h2><%= movie_details['Title']%></h2>
+    <img src="<%= movie_details['Poster']%>" alt="">
+    <p><strong>My Review: </strong><%= review['review'] %></p>
+
+<% end %>

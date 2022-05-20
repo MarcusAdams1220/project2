@@ -38,3 +38,13 @@ delete '/delete_review/:id' do
 
     redirect "/movie_details?movie_id=#{movie_id}"
 end
+
+get '/user_reviews' do
+    user_id = params['user_id'].to_i
+    review_hash = get_user_reviews(user_id)
+    
+    erb :'reviews/user_reviews', locals: {
+        review_hash: review_hash,
+        # movie_details: movie_details
+    }
+end

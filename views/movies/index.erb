@@ -1,7 +1,8 @@
 <h1>Movie Review Site</h1>
 
 <% if logged_in? %>
-    <h1> You're Logged In </h1>
+    <a href="/user_reviews?user_id=<%= session['user_id']%>">My Reviews</a>
+
     <form action="/sessions" method="POST">
         <input type="hidden" name="_method" value="delete">
         <button>Log Out</button>

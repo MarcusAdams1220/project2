@@ -13,3 +13,7 @@ end
 def delete_review (review_id)
     run_sql("DELETE FROM reviews WHERE id = $1", [review_id])
 end
+
+def get_user_reviews(user_id)
+    run_sql("SELECT * FROM reviews WHERE user_id = $1", [user_id]).to_a
+end
