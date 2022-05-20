@@ -49,6 +49,5 @@ get '/user_reviews' do
     
     erb :'reviews/user_reviews', locals: {
         review_hash: review_hash,
-        # movie_details: movie_details
     }
 end

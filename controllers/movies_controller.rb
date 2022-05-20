@@ -9,8 +9,6 @@ get '/search_results' do
 
     movies = HTTParty.get("https://omdbapi.com/?s=#{user_input}&apikey=6a610b16")
 
-    binding.pry
-
     if movies["Response"] == "False"
         # Show too many results message
         erb :'movies/index', locals: {

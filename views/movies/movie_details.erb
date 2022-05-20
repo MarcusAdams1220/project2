@@ -26,7 +26,6 @@
         <p><strong><%= review_hash['name'] %>:</strong> <%= review_hash['review'] %></p>
 
         <% if logged_in? && review_hash['user_id'] == session['user_id']%>
-            <% binding.pry %>
             <a href="/edit_review?id=<%= review_hash['id'] %>&review=<%= review_hash['review'] %>">Edit Review</a>
 
             <form action="/delete_review/<%= review_hash['id'] %>" method="POST">

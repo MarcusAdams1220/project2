@@ -8,4 +8,14 @@
     <img src="<%= movie_details['Poster']%>" alt="">
     <p><strong>My Review: </strong><%= review['review'] %></p>
 
+    <a href="/edit_review?id=<%= review['id'] %>&review=<%= review['review'] %>">Edit Review</a>
+
+    <form action="/delete_review/<%= review['id'] %>" method="POST">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="movie_id" value="<%= review['movie_id'] %>">
+
+        <button>Delete Review</button>
+    </form>
+    
+
 <% end %>
