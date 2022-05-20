@@ -12,7 +12,6 @@ post '/sessions' do
         session['user_id'] = user['id'] # => "1"
         redirect '/'
     else
-        # Display login incorrect message
         erb :'/sessions/new', locals: {
             incorrect_login_msg: "The email or password you entered is incorrect"
         }

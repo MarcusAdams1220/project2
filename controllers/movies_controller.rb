@@ -1,5 +1,7 @@
 get '/' do
-    erb :'movies/index'
+    erb :'movies/index', locals: {
+        invalid_search_msg: ""
+    }
 end
 
 get '/search_results' do
@@ -7,11 +9,16 @@ get '/search_results' do
 
     movies = HTTParty.get("https://omdbapi.com/?s=#{user_input}&apikey=6a610b16")
 
+    binding.pry
+
     if movies["Response"] == "False"
         # Show too many results message
-        redirect '/'
+        erb :'movies/index', locals: {
+            invalid_search_msg: "Too many results! Make your search more specific",
+        }
     else
         erb :'movies/search_results', locals: {
+            invalid_search_msg: "",
             movies: movies['Search'],
             user_input: user_input
         }
@@ -19,7 +26,6 @@ get '/search_results' do
 end
 
 get '/movie_details' do
-    # From search_results.erb
     movie_id = params['movie_id']
 
     details = HTTParty.get("https://omdbapi.com/?i=#{movie_id}&apikey=6a610b16")
