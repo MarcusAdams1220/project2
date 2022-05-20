@@ -7,6 +7,9 @@ post '/sessions' do
     if user && BCrypt::Password.new(user['password_digest']) == password
         session['user_id'] = user['id'] # => "1"
         redirect '/'
+    else
+        # Display login incorrect message
+        redirect '/login'
     end
 end
 

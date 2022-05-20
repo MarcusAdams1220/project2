@@ -1,5 +1,20 @@
 get '/sign_up' do
-    erb :'users/sign_up'
+    if (params['empty_sign_up_msg'] == nil) && (params['user_already_exists_msg'] == nil)
+        erb :'users/sign_up', locals: {
+            empty_sign_up_msg: "",
+            user_already_exists_msg: ""
+        }
+    elsif params['empty_sign_up_msg'] != nil
+        erb :'users/sign_up', locals: {
+            empty_sign_up_msg: "You must enter all of your details to create an account",
+            user_already_exists_msg: ""
+        }
+    else
+        erb :'users/sign_up', locals: {
+            empty_sign_up_msg: "",
+            user_already_exists_msg: "This account already exists, try a different email"
+        }
+    end
 end
 
 post '/create_user' do
@@ -11,14 +26,14 @@ post '/create_user' do
 
     if user == nil
         if (name == "") || (user_email == "") || (password == "")
-            # Display empty fields message
+            redirect '/sign_up?empty_sign_up_msg=true'
         else
             user = create_user(name, user_email, password).to_a[0]
             session['user_id'] = user['id']
             redirect '/'
         end
     else
-        # Display user already exists message
+        redirect '/sign_up?user_already_exists_msg=true'
     end
 end
 

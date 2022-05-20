@@ -7,10 +7,15 @@ get '/search_results' do
 
     movies = HTTParty.get("https://omdbapi.com/?s=#{user_input}&apikey=6a610b16")
 
-    erb :'movies/search_results', locals: {
-        movies: movies['Search'],
-        user_input: user_input
-    }
+    if movies["Response"] == "False"
+        # Show too many results message
+        redirect '/'
+    else
+        erb :'movies/search_results', locals: {
+            movies: movies['Search'],
+            user_input: user_input
+        }
+    end    
 end
 
 get '/movie_details' do
