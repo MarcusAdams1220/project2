@@ -4,7 +4,11 @@ post '/create_review' do
 
     name = find_user_by_id(session['user_id'].to_i).to_a[0]['name']
 
-    create_review(movie_id, session['user_id'].to_i, review, name)
+    if review == ""
+        # Display empty field message
+    else
+        create_review(movie_id, session['user_id'].to_i, review, name)
+    end    
     
     redirect "/movie_details?movie_id=#{movie_id}"
 end

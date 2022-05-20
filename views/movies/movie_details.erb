@@ -25,14 +25,17 @@
 
         <p><strong><%= review_hash['name'] %>:</strong> <%= review_hash['review'] %></p>
 
-        <a href="/edit_review?id=<%= review_hash['id'] %>&review=<%= review_hash['review'] %>">Edit Review</a>
+        <% if logged_in? && review_hash['user_id'] == session['user_id']%>
+            <% binding.pry %>
+            <a href="/edit_review?id=<%= review_hash['id'] %>&review=<%= review_hash['review'] %>">Edit Review</a>
 
-        <form action="/delete_review/<%= review_hash['id'] %>" method="POST">
-            <input type="hidden" name="_method" value="delete">
-            <input type="hidden" name="movie_id" value="<%= review_hash['movie_id'] %>">
+            <form action="/delete_review/<%= review_hash['id'] %>" method="POST">
+                <input type="hidden" name="_method" value="delete">
+                <input type="hidden" name="movie_id" value="<%= review_hash['movie_id'] %>">
 
-            <button>Delete Review</button>
-        </form>
+                <button>Delete Review</button>
+            </form>
+        <% end %>
     <% end %>
 
 <% end %>

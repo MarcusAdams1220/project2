@@ -11,7 +11,7 @@ post '/create_user' do
 
     if user == nil
         if (name == "") || (user_email == "") || (password == "")
-            "Please make sure you enter your name, email & password"
+            # Display empty fields message
         else
             user = create_user(name, user_email, password).to_a[0]
             session['user_id'] = user['id']
