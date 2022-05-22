@@ -201,7 +201,7 @@ header li :hover {
 /* User Reviews Page */
 .user-reviews-page {
     background-color: rgb(32, 32, 32);
-    height: 90vh;
+    height: 100%;
     padding-top: 30px;
     padding-bottom: 50px;
 }
