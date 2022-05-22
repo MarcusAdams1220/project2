@@ -107,6 +107,15 @@ header li :hover {
     padding: 5px 30px;
 }
 
+/* Error Messages For User Mistakes */
+.user-error-msg {
+    background-color: rgba(0, 0, 0, 0.56);
+    border-radius: 5px;
+    font-size: 25px;
+    margin-right: 25%;
+    margin-left: 25%;
+}
+
 /* Search Results Page */
 .search-results-page {
     background-color: rgb(32, 32, 32);
@@ -217,9 +226,4 @@ header li :hover {
 
 
 
-/* Error Messages For User Mistakes */
-.user-error-msg {
-    color: white;
-    font-size: 25px;
-    font-family: 'Roboto';
-}
+
