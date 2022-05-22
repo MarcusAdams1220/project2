@@ -1,13 +1,15 @@
-<h1>Login</h1>
+<div class="user-details-page">
+    <h1>Login</h1>
 
-<form action="/sessions" method="POST">
-    <label for="">Email: </label>
-    <input type="text" name="email">
+    <form action="/sessions" method="POST">
+        <label for="">Email: </label>
+        <input type="text" name="email">
 
-    <label for="">Password: </label>
-    <input type="password" name="password">
-    
-    <button>Log In</button>
-</form>
+        <label for="">Password: </label>
+        <input type="password" name="password">
+        
+        <button>Log In</button>
+    </form>
 
-<p class="user-error-msg"><%= incorrect_login_msg %></p>
+    <p class="user-error-msg"><%= incorrect_login_msg %></p>
+</div>

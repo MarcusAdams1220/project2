@@ -1,44 +1,42 @@
-<h1><%= movie_title %></h1>
+<div class="movie-details">
+    <div>
+        <h1><%= movie_title %></h1>
+        <img src="<%= poster_url %>" alt="">
+        <p class="imdb-rating"><strong>IMDB Rating: </strong><%= imdb_rating %></p>
+        <% if logged_in? %>
+            <form action="/create_review" method="POST">
+                <input type="hidden" name="movie_id" value="<%= imdbID %>">
 
-<img src="<%= poster_url %>" alt="">
+                <label for="">Leave A Review: </label> 
+                <input type="text" name="review" class="review-input">
 
-<p><strong>Release Date: </strong><%= release_date %></p>
-<p><strong>IMDB Rating: </strong><%= imdb_rating %></p>
-
-<% if logged_in? %>
-    <form action="/create_review" method="POST">
-        <input type="hidden" name="movie_id" value="<%= imdbID %>">
-
-        <label for="">Leave A Review: </label> 
-        <input type="text" name="review" class="review-input">
-
-        <button>Submit Review</button>
-    </form>
-<% end %>
-
-<% if reviews == [] %>
-    <h2>This Movie Has No Reviews</h2>
-<% else %>
-    <h2>User Reviews: </h2>
-
-    <% reviews.each do |review_hash| %>
-
-        <p><strong><%= review_hash['name'] %>:</strong> <%= review_hash['review'] %></p>
-
-        <% if logged_in? && review_hash['user_id'] == session['user_id']%>
-            <a href="/edit_review?id=<%= review_hash['id'] %>&review=<%= review_hash['review'] %>">Edit Review</a>
-
-            <form action="/delete_review/<%= review_hash['id'] %>" method="POST">
-                <input type="hidden" name="_method" value="delete">
-                <input type="hidden" name="movie_id" value="<%= review_hash['movie_id'] %>">
-
-                <button>Delete Review</button>
+                <button>Submit Review</button>
             </form>
         <% end %>
-    <% end %>
+    </div>
 
-<% end %>
+    <div class="reviews">
+        <% if reviews == [] %>
+            <h2>No Reviews Available</h2>
+        <% else %>
+            <h2>Reviews</h2>
 
+            <% reviews.each do |review_hash| %>
 
+                <p><strong><%= review_hash['name'] %>: </strong> "<%= review_hash['review'] %>"</p>
 
+                <% if logged_in? && review_hash['user_id'] == session['user_id']%>
+                    <a href="/edit_review?id=<%= review_hash['id'] %>&review=<%= review_hash['review'] %>" class="edit-review-btn">Edit Your Review</a>
 
+                    <form action="/delete_review/<%= review_hash['id'] %>" method="POST">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="movie_id" value="<%= review_hash['movie_id'] %>">
+
+                        <button class="delete-review-btn">Delete Your Review</button>
+                    </form>
+                <% end %>
+            <% end %>
+
+        <% end %>
+    </div>
+</div>

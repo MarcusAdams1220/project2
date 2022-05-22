@@ -2,13 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Movie Reviews</title>
+  <title>Reel Reviews</title>
+  <link rel="icon" type="image/x-icon" href="https://i.ibb.co/nQwXVf1/reel-reviews-icon.png" alt="reel-reviews-icon">
   <link rel='stylesheet' href='/stylesheets/main.css'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@700&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  <header>
+    <a href="/"><img src="https://i.ibb.co/Yj5SpnF/reel-reviews-logo.png" alt="reel-reviews-logo" alt="reel-reviews-logo"></a>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <% if logged_in? %>
+          <li><a href="/user_reviews?user_id=<%= session['user_id']%>">My Reviews</a></li>
+          <li>
+            <form action="/sessions" method="POST">
+              <input type="hidden" name="_method" value="delete">
+              <button>Log Out</button>
+            </form>
+          </li>
+        <% else %>
+          <li><a href="/sign_up">Sign Up</a></li>
+          <li> <a href="/login"><button>Log In</button></a></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
 
-  <%= yield %>
+  <div>
+    <%= yield %>
+  </div>
 
 </body>
 </html>

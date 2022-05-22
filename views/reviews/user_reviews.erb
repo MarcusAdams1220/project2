@@ -1,21 +1,26 @@
-<h1>My Reviews</h1>
+<div class="user-reviews-page">
+    <h1>My Reviews</h1>
 
-<% review_hash.each do |review| %>
-    <% movie_id = review['movie_id'] %>
-    <% movie_details = HTTParty.get("https://omdbapi.com/?i=#{movie_id}&apikey=6a610b16") %>
+    <div class="user-reviews">
+        <% review_hash.each do |review| %>
+            <% movie_id = review['movie_id'] %>
+            <% movie_details = HTTParty.get("https://omdbapi.com/?i=#{movie_id}&apikey=6a610b16") %>
 
-    <h2><%= movie_details['Title']%></h2>
-    <img src="<%= movie_details['Poster']%>" alt="">
-    <p><strong>My Review: </strong><%= review['review'] %></p>
+            <div class ="review">
+                <h2><%= movie_details['Title']%></h2>
+                <img src="<%= movie_details['Poster']%>" alt="">
+                <p><strong>"</strong><%= review['review'] %>"</p>
 
-    <a href="/edit_review?id=<%= review['id'] %>&review=<%= review['review'] %>">Edit Review</a>
+                <a href="/edit_review?id=<%= review['id'] %>&review=<%= review['review'] %>" class="edit-review-btn">Edit Review</a>
 
-    <form action="/delete_review/<%= review['id'] %>" method="POST">
-        <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="movie_id" value="<%= review['movie_id'] %>">
+                <form action="/delete_review/<%= review['id'] %>" method="POST">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="movie_id" value="<%= review['movie_id'] %>">
 
-        <button>Delete Review</button>
-    </form>
-    
-
-<% end %>
+                    <button class="delete-review-btn">Delete Review</button>
+                </form>
+            </div>
+            
+        <% end %>
+    </div>
+</div>

@@ -1,17 +1,26 @@
-<h1>Create Your Account</h1>
 
-<form action="/create_user" method="POST">
-    <label for="">Name: </label>
-    <input type="text" name="name">
+<div class="user-details-page">
+    <h1>Create Your Account</h1>
 
-    <label for="">Email: </label>
-    <input type="text" name="email">
+    <form action="/create_user" method="POST">
+        <div>
+            <label for="">Name: </label>
+            <input type="text" name="name">
+        </div>
 
-    <label for="">Password: </label>
-    <input type="password" name="password">
+        <div>
+            <label for="">Email: </label>
+            <input type="text" name="email">
+        </div>
 
-    <button>Sign Up</button>
-</form>
+        <div>
+            <label for="">Password: </label>
+            <input type="password" name="password">
+        </div>
 
-<p class="user-error-msg"><%= empty_sign_up_msg %></p>
-<p class="user-error-msg"><%= user_already_exists_msg %></p>
+        <button>Sign Up</button>
+    </form>
+
+    <p class="user-error-msg"><%= empty_sign_up_msg %></p>
+    <p class="user-error-msg"><%= user_already_exists_msg %></p>
+</div>

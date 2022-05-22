@@ -1,8 +1,10 @@
 <h1>Edit Review</h1>
 
-<form action="/update_review/<%= review_id %>" method="POST">
-    <input type="hidden" name="_method" value="put">
+<div class="edit-review">
+    <form action="/update_review/<%= review_id %>" method="POST">
+        <input type="hidden" name="_method" value="put">
 
-    <input type="text" name="review_edit" value="<%= review %>" class="review-input">
-    <button>Submit Changes</button>
-</form>
+        <input type="text" name="review_edit" value="<%= review %>" class="review-input">
+        <button>Submit Changes</button>
+    </form>
+</div>

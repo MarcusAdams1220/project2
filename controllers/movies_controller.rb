@@ -12,7 +12,7 @@ get '/search_results' do
     if movies["Response"] == "False"
         # Show too many results message
         erb :'movies/index', locals: {
-            invalid_search_msg: "Too many results! Make your search more specific",
+            invalid_search_msg: "No results! Make your search more specific",
         }
     else
         erb :'movies/search_results', locals: {

@@ -4,9 +4,7 @@ post '/create_review' do
 
     name = find_user_by_id(session['user_id'].to_i).to_a[0]['name']
 
-    if review == ""
-        # Display empty field message
-    else
+    if review != ""
         create_review(movie_id, session['user_id'].to_i, review, name)
     end    
     

@@ -1,5 +1,14 @@
-<h1>Search Results For "<%= user_input %>"</h1>
+<div class="search-results-page">
 
-<% movies.each do |movie| %>
-    <a href="/movie_details?movie_id=<%= movie['imdbID']%>"><img src="<%= movie['Poster'] %>" alt=""></a>
-<% end %>
+
+    <h1>Search Results For "<%= user_input %>"</h1>
+
+    <div class="movie-list">
+        <% movies.each do |movie| %>
+            <div class="movie">
+                <p><a href="/movie_details?movie_id=<%= movie['imdbID']%>"><img src="<%= movie['Poster'] %>" alt=""><br><br><%= movie['Title']%></a></p>
+            </div>
+        <% end %>
+    </div>
+
+</div>
