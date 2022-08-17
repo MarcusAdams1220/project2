@@ -35,7 +35,7 @@
     <li>Create a home page with a "sign up" button.</li>
     <li>Create a sign up page where users can enter their name, email & password.</li>
     <li>Create a 'users' table in the database to store user info.</li>
-    <li>Write a method that returns data from the database.</li>
+    <li>Write a method that returns user data from the database.</li>
     <li>Write a method that stores the new user's data into the 'users' table when they sign up.</li>
     <li>Write an if statement to check if the email already exists & display an 'email already exists' message. </li>
     <li>After signing up, redirect users to the homepage.</li>
